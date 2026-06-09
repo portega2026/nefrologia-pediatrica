@@ -9,27 +9,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg-0:#141412;
-  --bg-1:#1c1c1a;
-  --panel:#2A2A29;
-  --panel-2:#323230;
-  --glass:rgba(255,255,255,.04);
-  --glass-2:rgba(255,255,255,.08);
-  --border:rgba(255,255,255,.1);
-  --border-2:rgba(255,255,255,.18);
-  --text:#ECF7FD;
-  --text-2:#a8bcc8;
-  --text-3:#607080;
-  --accent:#13D511;
-  --accent-2:#0fa80e;
-  --accent-soft:#7fee7d;
-  --accent-glow:rgba(19,213,17,.22);
-  --coral:#ff7d63;
-  --amber:#f3b34d;
+  --bg-0:#f4f6f8;
+  --bg-1:#ffffff;
+  --panel:#ffffff;
+  --panel-2:#f0f2f5;
+  --glass:rgba(37,99,235,.04);
+  --glass-2:rgba(37,99,235,.07);
+  --border:#dde2e8;
+  --border-2:#c8d0d8;
+  --text:#111827;
+  --text-2:#374151;
+  --text-3:#9ca3af;
+  --accent:#2563eb;
+  --accent-2:#1d4ed8;
+  --accent-soft:#93c5fd;
+  --accent-glow:rgba(37,99,235,.15);
+  --coral:#e53e3e;
+  --amber:#d97706;
   --font:'Exo 2',system-ui,sans-serif;
   --mono:ui-monospace,'SF Mono',Menlo,monospace;
-  --sidebar-w:300px;
-  --nav-h:76px;
+  --sidebar-w:280px;
+  --tags-w:220px;
+  --nav-h:68px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -43,36 +44,34 @@ body{
 }
 
 /* ── progress bar ── */
-#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));z-index:200;transition:width .1s linear;pointer-events:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent);z-index:200;transition:width .1s linear;pointer-events:none}
 
 /* ── nav ── */
 .topnav{
   height:var(--nav-h);background:var(--panel);
-  border-bottom:1px solid rgba(255,255,255,.09);
+  border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 28px;position:sticky;top:0;z-index:100;flex-shrink:0;
 }
-.nav-brand{display:flex;align-items:center;gap:13px;cursor:pointer;text-decoration:none}
+.nav-brand{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
 .nav-glyph{
-  width:44px;height:44px;border-radius:12px;flex-shrink:0;
-  background:linear-gradient(145deg,rgba(19,213,17,.18),rgba(19,213,17,.05));
-  border:1px solid rgba(19,213,17,.3);
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:var(--accent);
   display:grid;place-items:center;
-  box-shadow:0 0 24px rgba(19,213,17,.14);
 }
-.nav-glyph svg{width:26px;height:26px}
-.nav-title{font-weight:800;font-size:1.12rem;color:var(--text);letter-spacing:-.02em;line-height:1.1}
-.nav-sub{font-size:.54rem;text-transform:uppercase;letter-spacing:.26em;color:var(--accent);font-weight:700;margin-top:3px}
-.nav-links{display:flex;align-items:center;gap:32px}
+.nav-glyph svg{width:24px;height:24px}
+.nav-title{font-weight:800;font-size:1.05rem;color:var(--text);letter-spacing:-.02em;line-height:1.1}
+.nav-sub{font-size:.54rem;text-transform:uppercase;letter-spacing:.22em;color:var(--accent);font-weight:700;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:28px}
 .nav-link{
-  font-size:.95rem;font-weight:600;color:var(--text);cursor:pointer;
+  font-size:.9rem;font-weight:600;color:var(--text-2);cursor:pointer;
   background:none;border:none;font-family:var(--font);
-  letter-spacing:.02em;transition:color .2s;padding:0;
+  letter-spacing:.01em;transition:color .18s;padding:0;
 }
 .nav-link:hover{color:var(--accent)}
 .nav-mobile-btn{
-  display:none;background:var(--glass-2);border:1px solid var(--border);
-  border-radius:10px;width:42px;height:42px;color:var(--text);cursor:pointer;place-items:center;
+  display:none;background:var(--panel-2);border:1px solid var(--border);
+  border-radius:8px;width:40px;height:40px;color:var(--text);cursor:pointer;place-items:center;
 }
 
 /* ── layout ── */
@@ -82,274 +81,295 @@ body{
 .sidebar{
   width:var(--sidebar-w);flex-shrink:0;
   height:calc(100vh - var(--nav-h));position:sticky;top:var(--nav-h);
-  z-index:40;background:linear-gradient(180deg,var(--panel),var(--bg-1));
+  z-index:40;background:var(--panel);
   border-right:1px solid var(--border);
   display:flex;flex-direction:column;overflow:hidden;
 }
-.search-wrap{padding:16px 14px 8px}
+.search-wrap{padding:14px 12px 8px}
 .search-box{position:relative;display:flex;align-items:center}
-.search-box svg{position:absolute;left:12px;width:14px;height:14px;color:var(--text-3)}
+.search-box svg{position:absolute;left:11px;width:14px;height:14px;color:var(--text-3)}
 #search{
   width:100%;font-family:var(--font);font-size:.855rem;font-weight:500;color:var(--text);
-  padding:10px 14px 10px 36px;border-radius:10px;border:1px solid var(--border);
-  background:var(--glass);outline:none;transition:.2s;letter-spacing:.02em;
+  padding:9px 12px 9px 34px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-0);outline:none;transition:.18s;
 }
 #search::placeholder{color:var(--text-3)}
-#search:focus{border-color:var(--accent);background:var(--glass-2);box-shadow:0 0 0 3px var(--accent-glow)}
-.sidebar-label{padding:8px 16px 4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--text-3)}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.sidebar-label{padding:8px 14px 4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--text-3)}
 
 .tree{flex:1;overflow-y:auto;padding:4px 8px 28px}
-.tree::-webkit-scrollbar{width:5px}
-.tree::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:5px}
-.tree::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2)}
+.tree::-webkit-scrollbar{width:4px}
+.tree::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px}
 
 ul.branch{list-style:none}
 ul.branch ul.branch{
-  margin-left:11px;border-left:1px solid var(--border);padding-left:3px;
+  margin-left:10px;border-left:1px solid var(--border);padding-left:4px;
   overflow:hidden;max-height:0;opacity:0;
-  transition:max-height .36s ease,opacity .28s ease;
+  transition:max-height .3s ease,opacity .25s ease;
 }
 li.node.open>ul.branch{max-height:3000px;opacity:1}
 
 .row{
   display:flex;align-items:center;gap:6px;font-size:.855rem;font-weight:500;
-  color:var(--text-2);padding:9px 10px;margin:2px 0;border-radius:10px;
-  cursor:pointer;position:relative;transition:background .16s,color .16s;border:1px solid transparent;
+  color:var(--text-2);padding:8px 10px;margin:1px 0;border-radius:8px;
+  cursor:pointer;position:relative;transition:background .14s,color .14s;
 }
-.row:hover{background:var(--glass);color:var(--text)}
+.row:hover{background:var(--panel-2);color:var(--text)}
 .row.active{
-  background:linear-gradient(100deg,rgba(19,213,17,.13),rgba(19,213,17,.02));
-  color:var(--text);border-color:rgba(19,213,17,.3);
-  box-shadow:0 0 20px -8px var(--accent-glow);
-  animation:pulse-border 2.5s ease-in-out infinite;
-}
-@keyframes pulse-border{
-  0%,100%{box-shadow:0 0 20px -8px var(--accent-glow)}
-  50%{box-shadow:0 0 30px -4px var(--accent-glow)}
+  background:rgba(37,99,235,.08);
+  color:var(--accent);
 }
 .row.active::before{
-  content:"";position:absolute;left:-1px;top:20%;bottom:20%;width:3px;border-radius:3px;
-  background:linear-gradient(var(--accent),var(--accent-2));
+  content:"";position:absolute;left:0;top:20%;bottom:20%;width:3px;border-radius:3px;
+  background:var(--accent);
 }
-.row .caret{width:15px;height:15px;flex-shrink:0;display:grid;place-items:center;transition:transform .26s cubic-bezier(.4,0,.2,1);color:var(--text-3)}
+.row .caret{width:14px;height:14px;flex-shrink:0;display:grid;place-items:center;transition:transform .22s ease;color:var(--text-3)}
 li.node.open>.row .caret{transform:rotate(90deg);color:var(--accent)}
 .row .caret.leaf{visibility:hidden}
 .row .label{flex:1;line-height:1.32}
-.row .badge{font-size:.57rem;font-weight:700;background:rgba(19,213,17,.1);color:var(--accent-soft);border-radius:20px;padding:2px 8px;border:1px solid rgba(19,213,17,.2)}
-.row .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);margin-right:2px;flex-shrink:0;opacity:.5}
+.row .badge{font-size:.57rem;font-weight:700;background:rgba(37,99,235,.1);color:var(--accent);border-radius:20px;padding:2px 7px}
+.row .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);margin-right:2px;flex-shrink:0;opacity:.45}
 .row.hidden,li.node.hidden{display:none}
-li.node{opacity:0;transform:translateX(-8px);animation:nodeIn .4s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes nodeIn{to{opacity:1;transform:none}}
+li.node{opacity:0;animation:nodeIn .3s ease forwards}
+@keyframes nodeIn{from{opacity:0}to{opacity:1}}
 
 /* ── main ── */
 .main{flex:1;min-width:0;display:flex;flex-direction:column}
 .content-scroll{flex:1;overflow-y:auto}
 
+/* ── tags sidebar ── */
+.tags-panel{
+  width:var(--tags-w);flex-shrink:0;
+  height:calc(100vh - var(--nav-h));position:sticky;top:var(--nav-h);
+  z-index:40;background:var(--panel);
+  border-left:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.tags-panel .tags-wrap{padding:14px 14px 18px;overflow-y:auto;flex:1}
+.tags-panel .tags-wrap::-webkit-scrollbar{width:4px}
+.tags-panel .tags-wrap::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px}
+.tag-summary{
+  padding:14px 14px 10px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(37,99,235,.05), transparent);
+}
+.tag-summary .ts-label{
+  font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-3);
+}
+.tag-summary .ts-value{
+  margin-top:8px;font-size:1rem;font-weight:800;line-height:1.3;color:var(--text);
+}
+.tag-summary .ts-count{
+  display:inline-flex;align-items:center;margin-top:6px;
+  font-size:.68rem;font-weight:700;color:var(--accent);
+  background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.16);
+  padding:3px 8px;border-radius:999px;
+}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.tag{
+  display:inline-flex;align-items:center;
+  border-radius:999px;border:1px solid rgba(37,99,235,.16);
+  background:rgba(37,99,235,.05);color:var(--accent-2);
+  padding:5px 10px;line-height:1;white-space:nowrap;
+  font-weight:700;letter-spacing:-.01em;
+  transition:transform .18s,border-color .18s,background .18s;
+}
+.tag-clickable{cursor:pointer}
+.tag:hover{transform:translateY(-1px);border-color:rgba(37,99,235,.35);background:rgba(37,99,235,.09)}
+.tag-meta{font-size:.55rem;color:var(--text-3);margin-left:6px;font-weight:700}
+.tag-selected{border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.14);color:#166534}
+.tag-selected .tag-meta{color:#4b7f5b}
+.row.tag-hit{
+  background:rgba(34,197,94,.08);
+  color:#166534;
+}
+.row.tag-hit::before{background:#22c55e}
+.row.tag-group{
+  background:rgba(34,197,94,.05);
+  color:#14532d;
+}
+
 /* ── HOME view ── */
 .home-wrap{min-height:calc(100vh - var(--nav-h));display:flex;flex-direction:column}
 
 .home-hero{
-  background:linear-gradient(160deg,#1a1a18 0%,#1e241a 40%,#141412 100%);
+  background:var(--panel);
   border-bottom:1px solid var(--border);
-  padding:80px 56px 72px;
-  position:relative;overflow:hidden;
-}
-.home-hero::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(19,213,17,.08),transparent 70%);
-  pointer-events:none;
+  padding:60px 52px 56px;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;
-  color:var(--accent);background:rgba(19,213,17,.08);
-  border:1px solid rgba(19,213,17,.22);padding:5px 14px;border-radius:30px;
-  margin-bottom:28px;
-  opacity:0;animation:fadeUp .6s .1s forwards;
+  font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent);background:rgba(37,99,235,.07);
+  border:1px solid rgba(37,99,235,.2);padding:5px 14px;border-radius:30px;
+  margin-bottom:24px;
 }
 .hero-eyebrow .dot-live{
-  width:7px;height:7px;border-radius:50%;background:var(--accent);
-  animation:blink-dot 1.8s ease-in-out infinite;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+  animation:blink-dot 2s ease-in-out infinite;
 }
-@keyframes blink-dot{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes blink-dot{0%,100%{opacity:1}50%{opacity:.25}}
 .hero-h1{
-  font-size:clamp(2.6rem,5vw,4.4rem);font-weight:900;line-height:1.0;
-  letter-spacing:-.04em;color:var(--text);
-  margin-bottom:20px;
-  opacity:0;animation:fadeUp .7s .22s forwards;
+  font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:900;line-height:1.05;
+  letter-spacing:-.03em;color:var(--text);
+  margin-bottom:16px;
 }
-.hero-h1 .green{
-  color:var(--accent);display:inline-block;
-  animation:glow-text 3s ease-in-out infinite;
-}
-@keyframes glow-text{
-  0%,100%{text-shadow:0 0 30px rgba(19,213,17,.3)}
-  50%{text-shadow:0 0 60px rgba(19,213,17,.6),0 0 100px rgba(19,213,17,.2)}
-}
+.hero-h1 .green{color:var(--accent)}
 .hero-cursor{
-  display:inline-block;width:3px;height:.85em;
-  background:var(--accent);margin-left:4px;vertical-align:middle;
+  display:inline-block;width:2px;height:.8em;
+  background:var(--accent);margin-left:3px;vertical-align:middle;
   animation:blink-cursor .9s step-end infinite;
 }
 @keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
 .hero-lead{
-  font-size:1.22rem;line-height:1.58;color:var(--text-2);
-  max-width:560px;margin-bottom:48px;
-  opacity:0;animation:fadeUp .7s .36s forwards;
+  font-size:1.1rem;line-height:1.6;color:var(--text-2);
+  max-width:520px;margin-bottom:40px;
 }
-.hero-stats{
-  display:flex;gap:12px;flex-wrap:wrap;
-  opacity:0;animation:fadeUp .7s .5s forwards;
-}
+.hero-stats{display:flex;gap:10px;flex-wrap:wrap}
 .hstat{
-  padding:18px 26px;border:1px solid var(--border);border-radius:14px;
-  background:var(--glass);backdrop-filter:blur(8px);
-  transition:border-color .2s,transform .2s,background .2s;cursor:default;
+  padding:16px 22px;border:1px solid var(--border);border-radius:12px;
+  background:var(--bg-0);
+  transition:border-color .18s,transform .18s;cursor:default;
 }
-.hstat:hover{border-color:rgba(19,213,17,.35);background:var(--glass-2);transform:translateY(-3px)}
-.hstat .num{font-size:2.2rem;font-weight:900;color:var(--accent);line-height:1;letter-spacing:-.02em}
-.hstat .lbl{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--text-3);margin-top:4px}
+.hstat:hover{border-color:var(--accent);transform:translateY(-2px)}
+.hstat .num{font-size:2rem;font-weight:900;color:var(--accent);line-height:1;letter-spacing:-.02em}
+.hstat .lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--text-3);margin-top:4px}
 
-/* ── CTA banner (como Tripeo) ── */
+/* ── CTA banner ── */
 .cta-banner{
-  background:linear-gradient(90deg,rgba(19,213,17,.12) 0%,rgba(19,213,17,.04) 100%);
-  border-top:1px solid rgba(19,213,17,.18);border-bottom:1px solid rgba(19,213,17,.18);
-  padding:40px 56px;text-align:center;
+  background:rgba(37,99,235,.05);
+  border-top:1px solid rgba(37,99,235,.12);border-bottom:1px solid rgba(37,99,235,.12);
+  padding:32px 52px;text-align:center;
 }
 .cta-banner h2{
-  font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:var(--text);
-  letter-spacing:-.02em;line-height:1.25;
+  font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:700;color:var(--text);
+  letter-spacing:-.01em;line-height:1.3;
 }
 .cta-banner h2 .green{color:var(--accent)}
 
 /* ── grid section (temas) ── */
-.home-grid-section{padding:52px 56px 64px;flex:1}
+.home-grid-section{padding:44px 52px 56px;flex:1}
 .section-label{
-  font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;
-  color:var(--text-3);margin-bottom:24px;display:flex;align-items:center;gap:12px;
+  font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;
+  color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:10px;
 }
 .section-label::after{content:"";flex:1;height:1px;background:var(--border)}
 
-.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .index-card{
-  border:1px solid var(--border);border-radius:16px;padding:22px 20px;cursor:pointer;
-  background:var(--glass);position:relative;overflow:hidden;text-align:left;
-  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s,background .25s;
-  opacity:0;transform:translateY(20px);
+  border:1px solid var(--border);border-radius:12px;padding:20px 18px;cursor:pointer;
+  background:var(--panel);text-align:left;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  opacity:0;
 }
-.index-card.visible{animation:cardIn .5s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes cardIn{to{opacity:1;transform:none}}
-.index-card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--accent),transparent);
-  opacity:0;transition:opacity .3s;
-}
-.index-card:hover{transform:translateY(-6px);border-color:rgba(19,213,17,.4);background:var(--glass-2);box-shadow:0 20px 50px -16px rgba(0,0,0,.8),0 0 30px -10px var(--accent-glow)}
-.index-card:hover::before{opacity:1}
-.index-card .ic-num{font-size:1.6rem;font-weight:900;color:rgba(19,213,17,.25);line-height:1}
-.index-card .ic-title{font-weight:700;font-size:.95rem;margin-top:10px;color:var(--text);line-height:1.3}
-.index-card .ic-meta{font-size:.7rem;color:var(--text-3);margin-top:8px;display:flex;align-items:center;gap:6px}
-.index-card .ic-meta::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.55;flex-shrink:0}
+.index-card.visible{animation:cardIn .35s ease forwards}
+@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.index-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px -8px rgba(37,99,235,.18)}
+.index-card .ic-num{font-size:1.4rem;font-weight:900;color:rgba(37,99,235,.2);line-height:1}
+.index-card .ic-title{font-weight:700;font-size:.92rem;margin-top:10px;color:var(--text);line-height:1.3}
+.index-card .ic-meta{font-size:.68rem;color:var(--text-3);margin-top:6px;display:flex;align-items:center;gap:5px}
+.index-card .ic-meta::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.6;flex-shrink:0}
 .index-card .ic-meta.todo::before{background:var(--text-3)}
 
 /* ── ARTICLE view ── */
 .article-wrap{
-  max-width:800px;margin:36px auto;padding:52px 58px 80px;
-  background:linear-gradient(180deg,rgba(42,42,41,.5),rgba(28,28,26,.4));
-  border:1px solid var(--border);border-radius:22px;
-  box-shadow:0 32px 80px -28px rgba(0,0,0,.8);backdrop-filter:blur(8px);
-  opacity:0;transform:translateY(18px);
-  animation:articleIn .5s cubic-bezier(.2,.8,.2,1) forwards;
+  max-width:780px;margin:32px auto;padding:44px 52px 72px;
+  background:var(--panel);
+  border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 4px 24px -8px rgba(0,0,0,.08);
+  opacity:0;transform:translateY(12px);
+  animation:articleIn .35s ease forwards;
 }
 @keyframes articleIn{to{opacity:1;transform:none}}
 
-.breadcrumb{font-size:.73rem;font-weight:500;color:var(--text-3);display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:26px}
-.breadcrumb span.crumb{cursor:pointer;transition:color .15s}
+.breadcrumb{font-size:.72rem;font-weight:500;color:var(--text-3);display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:22px}
+.breadcrumb span.crumb{cursor:pointer;transition:color .14s}
 .breadcrumb span.crumb:hover{color:var(--accent)}
-.breadcrumb .sep{opacity:.4}
+.breadcrumb .sep{opacity:.35}
 .breadcrumb .current{color:var(--text-2);font-weight:600}
 
 .eyebrow{
-  display:inline-flex;align-items:center;gap:7px;font-size:.64rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.2em;color:var(--accent);
-  background:rgba(19,213,17,.08);border:1px solid rgba(19,213,17,.22);
-  padding:5px 14px;border-radius:30px;margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.18em;color:var(--accent);
+  background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.2);
+  padding:4px 12px;border-radius:30px;margin-bottom:18px;
 }
 .article-wrap h1{
-  font-weight:900;font-size:2.75rem;line-height:1.02;letter-spacing:-.04em;
-  color:var(--text);margin-bottom:6px;
+  font-weight:900;font-size:2.4rem;line-height:1.05;letter-spacing:-.03em;
+  color:var(--text);margin-bottom:4px;
 }
 .lead{
-  font-size:1.18rem;line-height:1.58;color:var(--text-2);margin:18px 0 32px;
-  padding-bottom:28px;border-bottom:1px solid var(--border);
+  font-size:1.1rem;line-height:1.6;color:var(--text-2);margin:16px 0 28px;
+  padding-bottom:24px;border-bottom:1px solid var(--border);
 }
 
 /* scroll-reveal for prose elements */
-.prose{font-size:1.05rem;line-height:1.8;color:var(--text-2)}
-.prose>*+*{margin-top:1.2em}
+.prose{font-size:1rem;line-height:1.78;color:var(--text-2)}
+.prose>*+*{margin-top:1.1em}
 .prose h2{
-  font-weight:800;font-size:1.5rem;color:var(--text);
-  margin-top:2.2em;letter-spacing:-.025em;line-height:1.18;
-  padding-left:14px;border-left:3px solid var(--accent);
-  opacity:0;transform:translateX(-10px);
-  transition:opacity .5s,transform .5s;
+  font-weight:800;font-size:1.35rem;color:var(--text);
+  margin-top:2em;letter-spacing:-.02em;line-height:1.2;
+  padding-left:12px;border-left:3px solid var(--accent);
+  opacity:0;transform:translateX(-8px);
+  transition:opacity .4s,transform .4s;
 }
 .prose h2.revealed{opacity:1;transform:none}
-.prose h3{font-weight:700;font-size:.84rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-top:1.9em}
+.prose h3{font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-top:1.8em}
 .prose ul,.prose ol{padding-left:1.3em}
-.prose li{margin-top:.5em}
+.prose li{margin-top:.45em}
 .prose li::marker{color:var(--accent)}
 .prose strong{font-weight:700;color:var(--text)}
-.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(19,213,17,.35)}
-.prose code{font-family:var(--mono);font-size:.84em;background:var(--glass-2);padding:2px 8px;border-radius:7px;color:var(--accent-soft);border:1px solid var(--border)}
-.prose blockquote{border-left:3px solid var(--coral);padding:4px 0 4px 20px;color:var(--text-3);font-style:italic}
+.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(37,99,235,.35)}
+.prose code{font-family:var(--mono);font-size:.83em;background:var(--bg-0);padding:2px 7px;border-radius:6px;color:var(--accent-2);border:1px solid var(--border)}
+.prose blockquote{border-left:3px solid var(--coral);padding:4px 0 4px 18px;color:var(--text-3);font-style:italic}
 
 .callout{
-  border:1px solid var(--border);background:var(--glass);border-radius:14px;
-  padding:16px 20px;font-size:.98rem;line-height:1.6;
-  display:flex;gap:14px;align-items:flex-start;
-  opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s;
+  border:1px solid rgba(37,99,235,.2);background:rgba(37,99,235,.05);border-radius:12px;
+  padding:14px 18px;font-size:.97rem;line-height:1.6;
+  display:flex;gap:12px;align-items:flex-start;
+  opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;
 }
 .callout.revealed{opacity:1;transform:none}
 .callout .ico{
-  width:34px;height:34px;flex-shrink:0;border-radius:10px;display:grid;place-items:center;
-  font-weight:700;background:rgba(19,213,17,.13);color:var(--accent);border:1px solid rgba(19,213,17,.25);
+  width:32px;height:32px;flex-shrink:0;border-radius:8px;display:grid;place-items:center;
+  font-weight:700;background:rgba(37,99,235,.12);color:var(--accent);
 }
-.callout.warn{border-color:rgba(243,179,77,.25);background:rgba(243,179,77,.06)}
-.callout.warn .ico{background:rgba(243,179,77,.16);color:var(--amber);border-color:rgba(243,179,77,.3)}
-.callout .ct-title{font-weight:700;font-size:.73rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;color:var(--text)}
+.callout.warn{border-color:rgba(217,119,6,.25);background:rgba(217,119,6,.06)}
+.callout.warn .ico{background:rgba(217,119,6,.14);color:var(--amber)}
+.callout .ct-title{font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;color:var(--text)}
 
 table.tbl{
-  width:100%;border-collapse:collapse;font-size:.95rem;
-  opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;
+  width:100%;border-collapse:collapse;font-size:.93rem;
+  opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;
 }
 table.tbl.revealed{opacity:1;transform:none}
-table.tbl th,table.tbl td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border)}
-table.tbl th{font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
-table.tbl tr:hover td{background:var(--glass)}
+table.tbl th,table.tbl td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--border)}
+table.tbl th{font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3)}
+table.tbl tr:hover td{background:var(--bg-0)}
 table.tbl td strong{color:var(--text)}
 
 .empty-note{
-  margin-top:20px;border:1px dashed var(--border-2);border-radius:16px;
-  padding:32px;text-align:center;color:var(--text-3);font-size:.95rem;line-height:1.6;
+  margin-top:20px;border:1px dashed var(--border-2);border-radius:12px;
+  padding:28px;text-align:center;color:var(--text-3);font-size:.92rem;line-height:1.6;
 }
 
 /* ── scrim ── */
-#scrim{display:none;position:fixed;inset:0;background:rgba(4,7,12,.65);z-index:35;backdrop-filter:blur(3px)}
+#scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:35}
 
 /* ── keyframes shared ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 @media(max-width:900px){
-  .sidebar{position:fixed;top:var(--nav-h);bottom:0;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);height:auto}
+  .sidebar{position:fixed;top:var(--nav-h);bottom:0;transform:translateX(-100%);transition:transform .28s ease;height:auto}
+  .tags-panel{display:none}
   body.nav-open .sidebar{transform:none}
   body.nav-open #scrim{display:block}
   .nav-links{display:none}
   .nav-mobile-btn{display:grid}
-  .home-hero,.home-grid-section,.cta-banner{padding-left:22px;padding-right:22px}
-  .article-wrap{margin:14px 12px;padding:28px 20px 52px;border-radius:18px}
-  .article-wrap h1{font-size:2rem}
-  .hero-h1{font-size:2.2rem}
+  .home-hero,.home-grid-section,.cta-banner{padding-left:20px;padding-right:20px}
+  .article-wrap{margin:12px 10px;padding:24px 18px 48px;border-radius:14px}
+  .article-wrap h1{font-size:1.8rem}
+  .hero-h1{font-size:2rem}
 }
 </style>
 </head>
@@ -382,11 +402,8 @@ table.tbl td strong{color:var(--text)}
   <div class="nav-brand" onclick="renderHome()">
     <div class="nav-glyph">
       <svg viewBox="0 0 32 32" fill="none">
-        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#13D511"/><stop offset="1" stop-color="#0fa80e"/>
-        </linearGradient></defs>
-        <path d="M16 4C10 4 6 8 6 14c0 6 4 10 10 14 6-4 10-8 10-14 0-6-4-10-10-10Z" stroke="url(#g)" stroke-width="1.6" fill="rgba(19,213,17,.08)"/>
-        <path d="M16 11v10M12 14.5c1.4 1 2.6 1 4 0s2.6-1 4 0" stroke="#ff7d63" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M16 4C10 4 6 8 6 14c0 6 4 10 10 14 6-4 10-8 10-14 0-6-4-10-10-10Z" stroke="white" stroke-width="1.6" fill="rgba(255,255,255,.15)"/>
+        <path d="M16 11v10M12 14.5c1.4 1 2.6 1 4 0s2.6-1 4 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
     <div>
@@ -430,6 +447,18 @@ table.tbl td strong{color:var(--text)}
       <div id="root"></div>
     </div>
   </div>
+
+  <aside class="tags-panel">
+    <div class="sidebar-label">Etiquetas</div>
+    <div class="tag-summary" id="tagSummary" style="display:none">
+      <div class="ts-label">Etiqueta activa</div>
+      <div class="ts-value" id="tagSummaryName"></div>
+      <div class="ts-count" id="tagSummaryCount"></div>
+    </div>
+    <div class="tags-wrap">
+      <div class="tag-cloud" id="tagCloud"></div>
+    </div>
+  </aside>
 </div>
 
 <script>
@@ -438,139 +467,100 @@ table.tbl td strong{color:var(--text)}
    ═══════════════════════════════════════════════════════════════════ */
 const TREE = [
   {
-    id:"biopsia-tincion",
-    title:"Técnicas de tinción en biopsia renal",
-    lead:"Histoquímica convencional frente a inmunohistoquímica en nefropatología.",
-    content:`<iframe src="biopsias1.html"
-      onload="this.style.height=(this.contentWindow.document.body.scrollHeight+32)+'px'"
-      style="width:100%;min-height:600px;border:0;border-radius:16px;background:#0a0e17"
-      title="Técnicas de tinción en biopsia renal"></iframe>`
-  },
-  {
-    id:"fundamentos",
-    title:"Anatomía y fisiología renal",
-    lead:"Las bases del riñón en desarrollo: cómo se forma, filtra y madura a lo largo de la infancia.",
-    children:[
+    id: "nefrogenetica",
+    title: "Nefrogenética",
+    lead: "Patogenicidad, penetrancia y expresividad en enfermedad renal hereditaria.",
+    children: [
       {
-        id:"nefrogenesis",
-        title:"Nefrogénesis y desarrollo renal",
-        lead:"La formación de las nefronas comienza en la vida fetal y condiciona la reserva renal de por vida.",
-        content:`
-          <p>La <strong>nefrogénesis</strong> es el proceso de formación de las nefronas, las unidades funcionales del riñón. En el ser humano se completa hacia la <strong>semana 34–36 de gestación</strong>, lo que significa que el prematuro nace con la formación de nefronas todavía en curso.</p>
-          <h2>Hitos del desarrollo</h2>
-          <ul>
-            <li><strong>Pronefros:</strong> estructura transitoria, regresa precozmente.</li>
-            <li><strong>Mesonefros:</strong> función excretora temporal durante el primer trimestre.</li>
-            <li><strong>Metanefros:</strong> origen del riñón definitivo, por interacción entre la yema ureteral y el blastema metanéfrico.</li>
-          </ul>
-          <div class="callout"><div class="ico">i</div><div><div class="ct-title">Concepto clave</div>El número total de nefronas (dotación nefronal) queda fijado al nacer. No se forman nuevas nefronas después. Un número reducido se asocia a mayor riesgo de hipertensión y enfermedad renal en la vida adulta.</div></div>
-          <h2>Implicación clínica</h2>
-          <p>La prematuridad, el bajo peso al nacer y la restricción del crecimiento intrauterino reducen la dotación nefronal y forman parte de la programación fetal de la enfermedad renal.</p>
-        `
+        id: "col4a3-patogenicidad-genetica",
+        title: "COL4A3. Interpretación de la patogenicidad en función de la genética",
+        lead: " ",
+        contentUrl: "temas/col4a3-patogenicidad-genetica.html",
       },
       {
-        id:"filtracion",
-        title:"Filtración glomerular en el niño",
-        lead:"El filtrado glomerular cambia de forma dinámica desde el nacimiento hasta los 2 años.",
-        content:`
-          <p>El <strong>filtrado glomerular (FG)</strong> del recién nacido es bajo y aumenta rápidamente durante los primeros meses de vida, alcanzando valores próximos a los del adulto (corregidos por superficie corporal) hacia los <strong>2 años de edad</strong>.</p>
+        id: "col4a4-patogenicidad-genetica",
+        title: "COL4A4. Interpretación de la patogenicidad en función de la genética",
+        lead: " ",
+        contentUrl: "temas/col4a4-patogenicidad-genetica.html",
+      }
+    ]
+  },
+  {
+    id: "fisiologia-basica",
+    title: "Conocimientos básicos en Fisiología Renal",
+    lead: "Los fundamentos fisiológicos que explican cómo el riñón filtra, reabsorbe y excreta en la infancia.",
+    children: [
+      {
+        id: "aclaramiento",
+        title: "Concepto de aclaramiento",
+        lead: "El aclaramiento renal es la herramienta conceptual central para cuantificar la capacidad del riñón de eliminar una sustancia del plasma.",
+        content: `
+          <p>El <strong>aclaramiento renal</strong> (o depuración renal) de una sustancia X se define como el <strong>volumen de plasma que el riñón es capaz de limpiar completamente de esa sustancia por unidad de tiempo</strong>. No implica necesariamente que ese volumen quede literalmente "vacío", sino que es un volumen equivalente calculado a partir de las cantidades excretadas.</p>
+
+          <h2>Fórmula general</h2>
+          <p>La expresión matemática del aclaramiento es:</p>
+          <div class="callout">
+            <div class="ico">f</div>
+            <div>
+              <div class="ct-title">Fórmula del aclaramiento</div>
+              <p><strong>C<sub>x</sub> = (U<sub>x</sub> × V̇) / P<sub>x</sub></strong></p>
+              <p>Donde <strong>U<sub>x</sub></strong> es la concentración de X en orina, <strong>V̇</strong> es el flujo urinario (ml/min) y <strong>P<sub>x</sub></strong> es la concentración plasmática de X. El resultado se expresa en <strong>ml/min</strong>, o corregido por superficie corporal en <strong>ml/min/1,73 m²</strong>.</p>
+            </div>
+          </div>
+
+          <h2>Interpretación según el comportamiento de la sustancia</h2>
+          <p>El valor del aclaramiento tiene un significado diferente según cómo el túbulo maneja la sustancia:</p>
           <table class="tbl">
-            <thead><tr><th>Edad</th><th>FG aproximado (ml/min/1,73 m²)</th></tr></thead>
+            <thead>
+              <tr><th>Manejo tubular</th><th>Resultado</th><th>Ejemplo</th></tr>
+            </thead>
             <tbody>
-              <tr><td>Recién nacido a término</td><td>≈ 20–40</td></tr>
-              <tr><td>2 semanas</td><td>≈ 50</td></tr>
-              <tr><td>1 año</td><td>≈ 90–100</td></tr>
-              <tr><td>≥ 2 años</td><td>≈ 100–120</td></tr>
+              <tr><td>Solo filtración (sin reabsorción ni secreción)</td><td>C<sub>x</sub> = FG</td><td>Inulina</td></tr>
+              <tr><td>Filtración + reabsorción neta</td><td>C<sub>x</sub> &lt; FG</td><td>Glucosa, urea, creatinina</td></tr>
+              <tr><td>Filtración + secreción neta</td><td>C<sub>x</sub> &gt; FG</td><td>PAH a dosis bajas</td></tr>
+              <tr><td>Extracción total en un solo paso</td><td>C<sub>x</sub> = flujo plasmático renal</td><td>PAH a dosis muy bajas</td></tr>
             </tbody>
           </table>
-          <div class="callout warn"><div class="ico">!</div><div><div class="ct-title">Precaución</div>La creatinina neonatal refleja la materna en los primeros días. Interpretar la función renal del recién nacido siempre en su contexto evolutivo.</div></div>
+
+          <h2>La inulina como patrón de referencia</h2>
+          <p>La <strong>inulina</strong> es el marcador ideal para medir el filtrado glomerular porque cumple todas las condiciones teóricas: se filtra libremente en el glomérulo, no se reabsorbe ni se secreta en el túbulo, no se metaboliza y no es tóxica. Por eso, su aclaramiento equivale al <strong>filtrado glomerular real</strong>.</p>
+          <div class="callout warn">
+            <div class="ico">!</div>
+            <div>
+              <div class="ct-title">Limitación práctica</div>
+              La determinación del aclaramiento de inulina requiere infusión intravenosa continua y recogida de orina temporizada, lo que la hace impractical en la clínica habitual. Se reserva para estudios de investigación y protocolos de referencia.
+            </div>
+          </div>
+
+          <h2>Aclaramiento de creatinina</h2>
+          <p>En la práctica clínica se utiliza el <strong>aclaramiento de creatinina</strong> como aproximación al filtrado glomerular. La creatinina es un producto endógeno del metabolismo muscular que se filtra libremente, pero a diferencia de la inulina, <strong>una pequeña fracción es secretada por el túbulo proximal</strong>, lo que hace que el aclaramiento de creatinina sobreestime ligeramente el FG real.</p>
+          <p>Esta sobreestimación es más pronunciada cuando el FG está reducido, ya que la secreción tubular representa una fracción mayor de la creatinina excretada.</p>
+
+          <h2>Aclaramiento de PAH y flujo plasmático renal</h2>
+          <p>El <strong>ácido paraaminohipúrico (PAH)</strong> a concentraciones plasmáticas bajas es filtrado y casi completamente secretado por el túbulo proximal, de modo que prácticamente todo el PAH que llega al riñón aparece en la orina. Su aclaramiento equivale al <strong>flujo plasmático renal efectivo (FPRE)</strong>, que en el adulto es de aproximadamente 600–700 ml/min/1,73 m².</p>
+
+          <h2>Relevancia en pediatría</h2>
+          <p>En el niño, los valores de aclaramiento varían con la edad y deben corregirse siempre por superficie corporal (1,73 m²) para hacer comparaciones válidas. El recién nacido tiene un filtrado glomerular bajo que aumenta rápidamente durante las primeras semanas, alcanzando valores próximos al adulto hacia los 2 años.</p>
+          <div class="callout">
+            <div class="ico">i</div>
+            <div>
+              <div class="ct-title">Concepto clave</div>
+              Un aclaramiento bajo no siempre indica enfermedad: en el neonato es fisiológico. El contexto clínico y la edad son imprescindibles para interpretar cualquier medida de función renal.
+            </div>
+          </div>
+
+          <h2>Estimación del FG sin orina: fórmulas</h2>
+          <p>Cuando no se puede recoger orina temporizada, se utilizan fórmulas que estiman el FG a partir de la creatinina plasmática. En pediatría la más empleada es la <strong>fórmula de Schwartz</strong>:</p>
+          <div class="callout">
+            <div class="ico">f</div>
+            <div>
+              <div class="ct-title">Fórmula de Schwartz (revisada)</div>
+              <p><strong>FGe = 0,413 × Talla (cm) / Creatinina plasmática (mg/dl)</strong></p>
+              <p>Válida para niños de 1 a 16 años con creatinina medida por método enzimático estandarizado (IDMS).</p>
+            </div>
+          </div>
         `
-      },
-      { id:"funcion-tubular", title:"Función tubular", content:"" }
-    ]
-  },
-  {
-    id:"evaluacion",
-    title:"Evaluación del paciente",
-    lead:"Herramientas clínicas y de laboratorio para valorar al niño con sospecha de enfermedad renal.",
-    children:[
-      { id:"historia", title:"Historia clínica y exploración", content:"" },
-      {
-        id:"orina",
-        title:"Análisis de orina",
-        lead:"El sedimento y la tira reactiva siguen siendo el estudio más rentable en nefrología.",
-        content:`
-          <p>El <strong>uroanálisis</strong> orienta el diagnóstico diferencial entre origen glomerular y no glomerular.</p>
-          <h3>Tira reactiva</h3>
-          <ul>
-            <li><strong>Proteinuria:</strong> cuantificar siempre con cociente proteína/creatinina o albúmina/creatinina en muestra aislada.</li>
-            <li><strong>Hematuria:</strong> confirmar con sedimento (descartar mioglobinuria/hemoglobinuria).</li>
-          </ul>
-          <h3>Sedimento</h3>
-          <p>La presencia de <strong>cilindros hemáticos</strong> o de <strong>hematíes dismórficos</strong> sugiere origen glomerular.</p>
-        `
-      },
-      { id:"funcion-renal", title:"Estimación de la función renal", content:"" },
-      { id:"imagen", title:"Pruebas de imagen", content:"" }
-    ]
-  },
-  {
-    id:"glomerular",
-    title:"Trastornos glomerulares",
-    children:[
-      {
-        id:"nefrotico",
-        title:"Síndrome nefrótico",
-        lead:"La glomerulopatía más característica de la edad pediátrica; en su mayoría corticosensible.",
-        content:`
-          <p>El <strong>síndrome nefrótico</strong> se define por la tríada de <strong>proteinuria en rango nefrótico</strong>, <strong>hipoalbuminemia</strong> y <strong>edema</strong>, acompañada con frecuencia de hiperlipidemia.</p>
-          <h2>Definiciones</h2>
-          <ul>
-            <li><strong>Proteinuria nefrótica:</strong> cociente proteína/creatinina elevado en muestra aislada, o proteinuria intensa en orina de 24 h.</li>
-            <li><strong>Hipoalbuminemia:</strong> albúmina sérica baja.</li>
-          </ul>
-          <div class="callout"><div class="ico">i</div><div><div class="ct-title">En el niño</div>La causa más frecuente entre 1 y 10 años es la enfermedad de cambios mínimos, habitualmente corticosensible, por lo que muchas veces se inicia tratamiento sin biopsia.</div></div>
-          <h2>Complicaciones a vigilar</h2>
-          <ul>
-            <li>Infecciones (especialmente peritonitis).</li>
-            <li>Fenómenos tromboembólicos.</li>
-            <li>Hipovolemia / sobrecarga según el manejo del edema.</li>
-          </ul>
-        `
-      },
-      { id:"gn", title:"Glomerulonefritis", content:"" },
-      { id:"hematuria", title:"Hematuria", content:"" }
-    ]
-  },
-  {
-    id:"tubular",
-    title:"Trastornos tubulares",
-    children:[
-      { id:"atr", title:"Acidosis tubular renal", content:"" },
-      { id:"tubulopatias", title:"Tubulopatías hereditarias", content:"" }
-    ]
-  },
-  { id:"itu", title:"Infección urinaria y reflujo", content:"" },
-  { id:"hta", title:"Hipertensión arterial", content:"" },
-  {
-    id:"erc",
-    title:"Enfermedad renal crónica",
-    lead:"Manejo del daño renal progresivo y de sus consecuencias sistémicas en el niño.",
-    children:[
-      { id:"erc-estadios", title:"Estadios y clasificación", content:"" },
-      { id:"erc-conservador", title:"Tratamiento conservador", content:"" },
-      { id:"dialisis", title:"Diálisis", content:"" },
-      { id:"trasplante", title:"Trasplante renal", content:"" }
-    ]
-  },
-  { id:"lra", title:"Lesión renal aguda", content:"" },
-  {
-    id:"hidroelectrolitico",
-    title:"Trastornos hidroelectrolíticos",
-    children:[
-      { id:"sodio", title:"Sodio y agua", content:"" },
-      { id:"potasio", title:"Potasio", content:"" },
-      { id:"calcio-fosforo", title:"Calcio y fósforo", content:"" }
+      }
     ]
   }
 ];
@@ -585,6 +575,11 @@ const treeEl  = document.getElementById('tree');
 const rootEl  = document.getElementById('root');
 const scrollEl= document.getElementById('scroll');
 const progEl  = document.getElementById('prog');
+const tagCloudEl = document.getElementById('tagCloud');
+const tagSummaryEl = document.getElementById('tagSummary');
+const tagSummaryNameEl = document.getElementById('tagSummaryName');
+const tagSummaryCountEl = document.getElementById('tagSummaryCount');
+let selectedTag = null;
 
 /* ── sidebar ── */
 function buildTree(nodes,depth){
@@ -611,6 +606,163 @@ function buildTree(nodes,depth){
   return ul;
 }
 treeEl.appendChild(buildTree(TREE,0));
+
+const STOPWORDS = new Set([
+  'de','la','el','y','o','u','a','en','del','al','los','las','un','una','unos','unas',
+  'por','para','con','sin','sobre','como','más','menos','muy','no','sí','se','su','sus',
+  'que','qué','quien','quién','cuando','cuándo','donde','dónde','si','ya','también',
+  'esto','esta','este','estas','estos','esa','ese','esas','esos','ser','son','fue','son',
+  'hay','lo','le','les','mi','tu','te','nos','vos','o','e','u','pero','porque','pues',
+  'cada','todo','toda','todos','todas','otro','otra','otros','otras','según','entre',
+  'hacia','desde','hasta','muy','más','menos','solo','sólo','aquí','allí','aqui','alli',
+]);
+
+function stripHtml(html){
+  return String(html||'').replace(/<[^>]*>/g,' ');
+}
+
+function collectTagCounts(nodes, counts){
+  nodes.forEach(n=>{
+    const text = [n.title, n.lead, stripHtml(n.content)].filter(Boolean).join(' ');
+    const words = text.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .match(/[a-z0-9α-ωά-ώñü]+/gi) || [];
+    words.forEach(w=>{
+      const word = w.toLowerCase();
+      if(word.length < 4) return;
+      if(STOPWORDS.has(word)) return;
+      counts.set(word, (counts.get(word) || 0) + 1);
+    });
+    if(n.children) collectTagCounts(n.children, counts);
+  });
+}
+
+function collectTopicTagCounts(nodes, counts){
+  nodes.forEach(n=>{
+    if(Array.isArray(n.tags)){
+      const uniqueTags = [...new Set(n.tags)];
+      uniqueTags.forEach(tag=>{
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      });
+    }
+    if(n.children) collectTopicTagCounts(n.children, counts);
+  });
+}
+
+function selectTaggedTopics(tag){
+  if(selectedTag === tag){
+    clearTagFilter();
+    return;
+  }
+  selectedTag = tag;
+  document.querySelectorAll('.tag').forEach(el=>el.classList.toggle('tag-selected', el.dataset.tag === tag));
+
+  const matches = new Set();
+  (function walk(nodes){
+    nodes.forEach(n=>{
+      if(Array.isArray(n.tags) && n.tags.includes(tag)) matches.add(n.id);
+      if(n.children) walk(n.children);
+    });
+  })(TREE);
+
+  const firstMatch = Array.from(matches)[0];
+
+  if(tagSummaryEl && tagSummaryNameEl && tagSummaryCountEl){
+    tagSummaryEl.style.display = 'block';
+    tagSummaryNameEl.textContent = tag;
+    tagSummaryCountEl.textContent = matches.size + (matches.size === 1 ? ' tema' : ' temas');
+  }
+
+  document.querySelectorAll('.row').forEach(r=>r.classList.remove('active','tag-hit','tag-group'));
+  document.querySelectorAll('li.node').forEach(li=>li.classList.remove('hidden','open'));
+
+  const relevantNodes = new Set();
+  matches.forEach(id=>{
+    let cur = id;
+    while(cur){
+      relevantNodes.add(cur);
+      cur = parentOf[cur];
+    }
+  });
+
+  document.querySelectorAll('li.node').forEach(li=>{
+    const id = li.dataset.id;
+    const node = byId[id];
+    const selfMatch = matches.has(id);
+    const relevant = relevantNodes.has(id);
+    if(!relevant) {
+      li.classList.add('hidden');
+      return;
+    }
+
+    let cur = id;
+    while(cur){
+      const curLi = treeEl.querySelector('li.node[data-id="'+cur+'"]');
+      if(curLi) curLi.classList.remove('hidden');
+      const parent = parentOf[cur];
+      if(parent){
+        const pl = treeEl.querySelector('li.node[data-id="'+parent+'"]');
+        if(pl) pl.classList.remove('hidden');
+      }
+      cur = parent;
+    }
+
+    const row = li.querySelector('.row');
+    if(row){
+      if(selfMatch) row.classList.add('active','tag-hit');
+      else row.classList.add('tag-group');
+    }
+    if(node && node.children && node.children.length) li.classList.add('open');
+  });
+
+  if(firstMatch) navigate(firstMatch);
+}
+
+function clearTagFilter(){
+  selectedTag = null;
+  document.querySelectorAll('.tag').forEach(el=>el.classList.remove('tag-selected'));
+  document.querySelectorAll('.row').forEach(r=>r.classList.remove('active','tag-hit','tag-group'));
+  document.querySelectorAll('li.node').forEach(li=>li.classList.remove('hidden','open'));
+  if(tagSummaryEl){
+    tagSummaryEl.style.display = 'none';
+    if(tagSummaryNameEl) tagSummaryNameEl.textContent = '';
+    if(tagSummaryCountEl) tagSummaryCountEl.textContent = '';
+  }
+  const active = location.hash.slice(1);
+  if(active && byId[active]) setActive(active);
+  renderTags();
+}
+
+function renderTags(){
+  if(!tagCloudEl) return;
+  const active = location.hash.slice(1);
+  const activeNode = byId[active];
+  if(activeNode && Array.isArray(activeNode.tags) && activeNode.tags.length){
+    tagCloudEl.innerHTML = activeNode.tags.map(tag =>
+      `<span class="tag tag-clickable" data-tag="${tag}" style="font-size:16px">${tag}</span>`
+    ).join('');
+    tagCloudEl.querySelectorAll('[data-tag]').forEach(el=>{
+      el.addEventListener('click',()=>selectTaggedTopics(el.dataset.tag));
+    });
+    return;
+  }
+  const counts = new Map();
+  collectTopicTagCounts(TREE, counts);
+  const tags = Array.from(counts.entries())
+    .sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 40);
+  const max = tags[0]?.[1] || 1;
+  const min = tags[tags.length-1]?.[1] || 1;
+  tagCloudEl.innerHTML = tags.map(([tag,count])=>{
+    const t = max === min ? 1 : (count - min) / (max - min);
+    const size = 12 + t * 16;
+    return `<span class="tag tag-clickable" data-tag="${tag}" style="font-size:${size}px" title="${count} temas">${tag}<span class="tag-meta">${count}</span></span>`;
+  }).join('');
+  tagCloudEl.querySelectorAll('[data-tag]').forEach(el=>{
+    el.addEventListener('click',()=>selectTaggedTopics(el.dataset.tag));
+  });
+}
+renderTags();
 
 /* ── progress bar ── */
 scrollEl.addEventListener('scroll',()=>{
@@ -662,6 +814,7 @@ function setActive(id){
 function navigate(id){
   const n=byId[id];if(!n)return;
   setActive(id);renderArticle(n);scrollEl.scrollTop=0;
+  renderTags();
   document.body.classList.remove('nav-open');
   try{history.replaceState(null,'','#'+id);}catch(e){}
 }
@@ -679,7 +832,7 @@ function breadcrumbHTML(id){
 }
 
 function renderArticle(n){
-  const hasContent=n.content&&n.content.trim().length;
+  const hasContent=(n.content&&n.content.trim().length) || n.contentUrl;
   const parentTitle=parentOf[n.id]?byId[parentOf[n.id]].title:'Área';
   let body='<div class="article-wrap">';
   body+='<div class="breadcrumb">'+breadcrumbHTML(n.id)+'</div>';
@@ -687,7 +840,11 @@ function renderArticle(n){
   body+='<h1>'+n.title+'</h1>';
   if(n.lead)body+='<p class="lead">'+n.lead+'</p>';
   if(hasContent){
-    body+='<div class="prose">'+n.content+'</div>';
+    if(n.contentUrl){
+      body+='<div class="prose" id="topicContent"><p>Cargando contenido…</p></div>';
+    } else {
+      body+='<div class="prose">'+n.content+'</div>';
+    }
   } else if(n.children&&n.children.length){
     body+='<div class="prose"><p>Esta sección agrupa los siguientes temas:</p></div>';
     body+='<div class="index-grid" style="margin-top:20px">';
@@ -706,6 +863,13 @@ function renderArticle(n){
   }
   body+='</div>';
   rootEl.innerHTML=body;
+  if(n.contentUrl){
+    const holder = rootEl.querySelector('#topicContent');
+    fetch(n.contentUrl)
+      .then(r=>r.text())
+      .then(html=>{ if(holder) holder.innerHTML = html; setupReveal(); })
+      .catch(()=>{ if(holder) holder.innerHTML = '<div class="empty-note">No se pudo cargar el tema.</div>'; });
+  }
   rootEl.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>{
     const t=el.dataset.go;t==='__home'?renderHome():navigate(t);
   }));
@@ -738,6 +902,12 @@ function countNodes(nodes){
 
 function renderHome(){
   document.querySelectorAll('.row').forEach(r=>r.classList.remove('active'));
+  selectedTag = null;
+  if(tagSummaryEl){
+    tagSummaryEl.style.display = 'none';
+    if(tagSummaryNameEl) tagSummaryNameEl.textContent = '';
+    if(tagSummaryCountEl) tagSummaryCountEl.textContent = '';
+  }
   try{history.replaceState(null,'','#');}catch(e){}
 
   const total=countNodes(TREE);
@@ -778,6 +948,7 @@ function renderHome(){
   rootEl.innerHTML=html;
   rootEl.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>navigate(el.dataset.go)));
   staggerCards();
+  renderTags();
 
   /* counters */
   animCount(document.getElementById('sc-areas'),TREE.length);
@@ -816,4 +987,3 @@ if(initial&&byId[initial])navigate(initial);else renderHome();
 </script>
 </body>
 </html>
-
