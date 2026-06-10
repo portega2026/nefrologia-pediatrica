@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La nefrona distal sensible a la aldosterona — Figura 1 reinterpretada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EBEEF2;
+    --card:#FFFFFF;
+    --ink:#15212B;
+    --muted:#5B6B78;
+    --line:#D7DEE4;
+    --dct1:#E04A38;
+    --dct2:#EF8A3C;
+    --cnt:#E7B838;
+    --na:#E8804D;
+    --k:#2F9E80;
+    --cl:#5B8FD0;
+    --hco3:#9AA0A6;
+    --h:#E0B43E;
+    --disp:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);line-height:1.5;
+    padding:32px 20px 56px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+ 
+  /* ---------- header ---------- */
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--ink);display:inline-block;}
+  h1{
+    font-family:var(--disp);font-weight:700;font-size:clamp(28px,5vw,46px);
+    line-height:1.04;letter-spacing:-.02em;margin:0 0 16px;max-width:18ch;
+  }
+  .thesis{font-size:clamp(15px,2.1vw,18px);color:var(--muted);max-width:62ch;margin:0;}
+  .thesis b{color:var(--ink);font-weight:600;}
+ 
+  /* ---------- signature transit strip ---------- */
+  .transit{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 28px 22px;margin:34px 0;
+    box-shadow:0 1px 0 rgba(21,33,43,.04);
+  }
+  .transit h2{
+    font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 20px;
+  }
+  .bar{display:flex;width:100%;border-radius:8px;overflow:hidden;height:54px;}
+  .seg{flex:1;display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-weight:600;font-size:14px;color:#fff;position:relative;}
+  .seg small{display:block;font-family:var(--body);font-weight:500;font-size:11px;opacity:.9;}
+  .seg.s1{background:var(--dct1);}
+  .seg.s2{background:var(--dct2);}
+  .seg.s3{background:var(--cnt);color:#3a2f08;}
+  .seg.s3 small{opacity:.75;}
+ 
+  .brackets{position:relative;margin-top:10px;height:74px;}
+  .brk{position:absolute;top:0;height:34px;border:1.5px solid var(--ink);border-bottom:none;border-radius:8px 8px 0 0;}
+  .brk span{
+    position:absolute;left:50%;top:38px;transform:translateX(-50%);
+    white-space:nowrap;font-size:12.5px;font-weight:600;text-align:center;line-height:1.25;
+  }
+  .brk span em{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:11px;}
+  .brk.electroneutral{left:0;width:66.6%;border-color:var(--dct1);}
+  .brk.electroneutral span{color:var(--dct1);}
+  .brk.electrogenic{left:33.3%;width:66.6%;top:0;border-color:var(--cnt);}
+  .brk.electrogenic span{color:#a07d09;}
+  .overlap-note{
+    margin-top:8px;font-size:12px;color:var(--muted);text-align:center;
+    font-family:var(--mono);letter-spacing:.02em;
+  }
+  .overlap-note b{color:var(--dct2);}
+ 
+  /* ---------- ASDN locator ---------- */
+  .locator{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    margin:26px 0 6px;font-size:13.5px;color:var(--muted);
+  }
+  .chip-seg{display:inline-flex;align-items:center;gap:7px;font-weight:500;color:var(--ink);}
+  .dot{width:13px;height:13px;border-radius:3px;display:inline-block;}
+  .dot.d1{background:var(--dct1);}.dot.d2{background:var(--dct2);}.dot.d3{background:var(--cnt);}
+  .asdn-tag{
+    margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.08em;
+    background:var(--ink);color:#fff;padding:5px 11px;border-radius:20px;
+  }
+ 
+  /* ---------- cell cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:14px;}
+  .cell{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 22px 20px;position:relative;overflow:hidden;
+  }
+  .cell::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;}
+  .cell.c1::before{background:var(--dct1);}
+  .cell.c2::before{background:var(--dct2);}
+  .cell.c3::before{background:var(--cnt);}
+  .cell.c4::before{background:var(--cnt);}
+  .cell-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px;}
+  .seg-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .cell h3{font-family:var(--disp);font-weight:600;font-size:19px;margin:2px 0 0;letter-spacing:-.01em;}
+  .badge{
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;
+    padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;
+  }
+  .badge.in{background:var(--ink);color:#fff;}
+  .badge.out{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .role{font-size:13px;color:var(--muted);margin:10px 0 16px;min-height:38px;}
+  .role b{color:var(--ink);font-weight:600;}
+ 
+  .membrane{margin-bottom:12px;}
+  .membrane:last-child{margin-bottom:0;}
+  .mlabel{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+  .mlabel::after{content:"";flex:1;height:1px;background:var(--line);}
+  .channels{display:flex;flex-wrap:wrap;gap:6px;}
+  .ch{
+    font-family:var(--mono);font-size:12px;font-weight:600;
+    padding:4px 9px;border-radius:7px;border:1px solid var(--line);background:#fff;
+  }
+  .ch.key{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .ch.note{font-family:var(--body);font-weight:400;font-size:11px;color:var(--muted);border:none;padding:4px 2px;}
+ 
+  /* ---------- ion legend ---------- */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+    margin-top:30px;padding:16px 20px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;
+  }
+  .legend .lg-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .ion{display:inline-flex;align-items:center;gap:8px;font-size:13px;}
+  .ion .bub{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:9.5px;font-weight:600;color:#fff;}
+  .bub.na{background:var(--na);}.bub.k{background:var(--k);}.bub.cl{background:var(--cl);}
+  .bub.hco{background:var(--hco3);}.bub.hh{background:var(--h);color:#3a2f08;}
+ 
+  /* ---------- footer ---------- */
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:18px;
+    font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;}
+  footer .cite{max-width:70ch;}
+  footer b{color:var(--ink);}
+ 
+  @media (max-width:680px){
+    .grid{grid-template-columns:1fr;}
+    .brk span{font-size:11px;}
+    .seg{font-size:12px;}
+  }
+  @media print{
+    body{background:#fff;padding:0;}
+    .transit,.cell,.legend{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+ 
+  <div class="eyebrow">Figura 1 · reinterpretada — Rossi et&nbsp;al. 2020</div>
+  <h1>La nefrona distal sensible a la aldosterona</h1>
+  <p class="thesis">A lo largo del túbulo distal cambia el reparto de canales: se pasa de una <b>reabsorción de NaCl electroneutra</b> (sodio acoplado al cloruro, sin secreción de potasio) a un <b>intercambio Na/K electrogénico</b> (la entrada de sodio genera negatividad luminal que permite secretar potasio). Esa segregación espacial es la base anatómica que explica la “paradoja de la aldosterona”.</p>
+ 
+  <!-- signature transit strip -->
+  <section class="transit">
+    <h2>El gradiente funcional del segmento</h2>
+    <div class="bar">
+      <div class="seg s1">DCT1<small>contorneado distal · inicial</small></div>
+      <div class="seg s2">DCT2<small>contorneado distal · tardío</small></div>
+      <div class="seg s3">CNT / CCD<small>conector · colector cortical</small></div>
+    </div>
+    <div class="brackets">
+      <div class="brk electroneutral"><span>Reabsorción de NaCl electroneutra<em>vía NCC y NDCBE/pendrina</em></span></div>
+      <div class="brk electrogenic"><span>Intercambio Na/K electrogénico<em>vía ENaC → ROMK / BK</em></span></div>
+    </div>
+    <div class="overlap-note">Los dos mecanismos se solapan en el <b>DCT2</b>, la zona de transición</div>
+  </section>
+ 
+  <!-- ASDN locator -->
+  <div class="locator">
+    <span class="chip-seg"><span class="dot d1"></span>DCT1 — fuera de la ASDN</span>
+    <span class="chip-seg"><span class="dot d2"></span>DCT2</span>
+    <span class="chip-seg"><span class="dot d3"></span>CNT/CCD</span>
+    <span class="asdn-tag">DCT2 + CNT/CCD = ASDN</span>
+  </div>
+  <p class="thesis" style="font-size:13px;margin-top:10px;">La sensibilidad a la aldosterona la define la coexpresión del <b>receptor mineralocorticoide (MR)</b> y la enzima <b>11βHSD2</b> (convierte cortisol en cortisona, evitando que el cortisol ocupe el MR). El DCT1 carece de ambos.</p>
+ 
+  <!-- cell cards -->
+  <div class="grid">
+ 
+    <article class="cell c1">
+      <div class="cell-head">
+        <div>
+          <div class="seg-label">DCT1 · célula tipo principal</div>
+          <h3>Reabsorción electroneutra</h3>
+        </div>
+        <span class="badge out">No ASDN</span>
+      </div>
+      <p class="role">Solo <b>NCC</b> en el apical: reabsorbe Na⁺ y Cl⁻ acoplados. Aloja el <b>sensor de potasio</b> (Kir4.1/5.1) que regula al NCC vía WNK4.</p>
+      <div class="membrane">
+        <div class="mlabel">Apical (luz)</div>
+        <div class="channels"><span class="ch key">NCC</span><span class="ch note">sensible a tiazidas</span></div>
+      </div>
+      <div class="membrane">
+        <div class="mlabel">Basolateral</div>
+        <div class="channels"><span class="ch">Kir4.1/5.1</span><span class="ch">CLCKB</span><span class="ch">KCC4</span><span class="ch">Na/K-ATPasa</span></div>
+      </div>
+    </article>
+ 
+    <article class="cell c2">
+      <div class="cell-head">
+        <div>
+          <div class="seg-label">DCT2 · célula tipo principal</div>
+          <h3>Zona de transición</h3>
+        </div>
+        <span class="badge in">ASDN</span>
+      </div>
+      <p class="role">Coexisten <b>NCC y ENaC</b>, y aparece el <b>ROMK</b>: aquí conviven el transporte electroneutro y el electrogénico.</p>
+      <div class="membrane">
+        <div class="mlabel">Apical (luz)</div>
+        <div class="channels"><span class="ch key">NCC</span><span class="ch key">ENaC</span><span class="ch key">ROMK</span></div>
+      </div>
+      <div class="membrane">
+        <div class="mlabel">Basolateral</div>
+        <div class="channels"><span class="ch">Kir4.1/5.1</span><span class="ch">CLCKB</span><span class="ch">KCC4</span><span class="ch">Na/K-ATPasa</span></div>
+      </div>
+    </article>
+ 
+    <article class="cell c3">
+      <div class="cell-head">
+        <div>
+          <div class="seg-label">CNT/CCD · célula principal</div>
+          <h3>Intercambio Na/K</h3>
+        </div>
+        <span class="badge in">ASDN</span>
+      </div>
+      <p class="role">Desaparece el NCC. <b>ENaC</b> reabsorbe Na⁺ de forma electrogénica → gradiente luminal negativo → secreción de K⁺ por <b>ROMK</b>.</p>
+      <div class="membrane">
+        <div class="mlabel">Apical (luz)</div>
+        <div class="channels"><span class="ch key">ENaC</span><span class="ch key">ROMK</span></div>
+      </div>
+      <div class="membrane">
+        <div class="mlabel">Basolateral</div>
+        <div class="channels"><span class="ch">Kir4.1/5.1</span><span class="ch">Na/K-ATPasa</span></div>
+      </div>
+    </article>
+ 
+    <article class="cell c4">
+      <div class="cell-head">
+        <div>
+          <div class="seg-label">CNT/CCD · célula intercalar tipo B</div>
+          <h3>Maquinaria alternativa</h3>
+        </div>
+        <span class="badge in">ASDN</span>
+      </div>
+      <p class="role"><b>NDCBE + pendrina</b> reabsorben NaCl electroneutramente; <b>BK</b> media la secreción de K⁺ inducida por flujo (FIKS). El gradiente lo crea la <b>H-ATPasa</b>.</p>
+      <div class="membrane">
+        <div class="mlabel">Apical (luz)</div>
+        <div class="channels"><span class="ch key">NDCBE</span><span class="ch key">Pendrina</span><span class="ch key">BK</span></div>
+      </div>
+      <div class="membrane">
+        <div class="mlabel">Basolateral / paracelular</div>
+        <div class="channels"><span class="ch">H-ATPasa</span><span class="ch">CLCKB</span><span class="ch">Claudina-4/8</span></div>
+      </div>
+    </article>
+ 
+  </div>
+ 
+  <!-- ion legend -->
+  <div class="legend">
+    <span class="lg-title">Iones</span>
+    <span class="ion"><span class="bub na">Na⁺</span>sodio</span>
+    <span class="ion"><span class="bub k">K⁺</span>potasio</span>
+    <span class="ion"><span class="bub cl">Cl⁻</span>cloruro</span>
+    <span class="ion"><span class="bub hco">HCO₃</span>bicarbonato</span>
+    <span class="ion"><span class="bub hh">H⁺</span>hidrógeno</span>
+  </div>
+ 
+  <footer>
+    <span class="cite">Adaptado de <b>Rossi GM, Regolisti G, Peyronel F, Fiaccadori E.</b> Recent insights into sodium and potassium handling by the aldosterone-sensitive distal nephron: a review of the relevant physiology. <i>J Nephrol.</i> 2020;33(3):431–445.</span>
+    <span><b>ASDN</b> · nefrona distal sensible a aldosterona</span>
+  </footer>
+ 
+</div>
+</body>
+</html>
